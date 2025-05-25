@@ -1,5 +1,6 @@
 # ios-professional
 UIKit app
+- [Github Resource](https://github.com/jrasmusson/ios-professional-course)
 
 ## Commands
 - CMD + SHF + J -> To see where the file is in project structure.
