@@ -19,7 +19,14 @@ class LoginViewController: UIViewController {
         style()
         layout()
     }
-
+    
+    var username: String? {
+        return loginView.usernameTextField.text
+    }
+    
+    var password: String? {
+        return loginView.passwordTextField.text
+    }
 
 }
 
@@ -40,8 +47,7 @@ extension LoginViewController {
         errorMessageLabel.textAlignment = .center
         errorMessageLabel.textColor = .systemRed
         errorMessageLabel.numberOfLines = 0 //Make it multiline
-        errorMessageLabel.text = "Error occurred while signing in. Please try again later. If the problem persists, contact support@bankey.com."
-        errorMessageLabel.isHidden = false
+        errorMessageLabel.isHidden = true
     }
     
     func layout() {
@@ -76,6 +82,27 @@ extension LoginViewController {
 //MARK: Actions
 extension LoginViewController{
     @objc func signInTapped() {
-        print("Sign In Tapped")
+        print("DEBUG: Sign In Tapped")
+        
+        errorMessageLabel.isHidden = true
+        login()
+    }
+    
+    private func login() {
+        print("DEBUG: Login")
+        
+        guard let username = username, let password = password else {
+            assertionFailure("Username / Password cannot be nil")
+            return
+        }
+        
+        if username.isEmpty || password.isEmpty {
+            configureView(withMessage: "Username and password cannot be empty")
+        }
+    }
+    
+    private func configureView( withMessage message: String) {
+        errorMessageLabel.isHidden = false
+        errorMessageLabel.text = message
     }
 }
