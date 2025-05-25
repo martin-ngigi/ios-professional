@@ -98,6 +98,15 @@ extension LoginViewController{
         
         if username.isEmpty || password.isEmpty {
             configureView(withMessage: "Username and password cannot be empty")
+            return
+        }
+        
+        if username == "martin" && password == "12345" {
+            signInButton.configuration?.showsActivityIndicator = true // shows a loader
+        }
+        else {
+            configureView(withMessage: "Invalid username / password")
+            return
         }
     }
     
