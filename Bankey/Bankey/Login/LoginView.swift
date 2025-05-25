@@ -10,6 +10,8 @@ import UIKit
 
 class LoginView: UIView {
     
+    //let usernameTextField = UITextField()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -30,6 +32,7 @@ extension  LoginView {
     
     func style(){
         translatesAutoresizingMaskIntoConstraints = false
+        backgroundColor = .orange
     }
     
     func layout() {

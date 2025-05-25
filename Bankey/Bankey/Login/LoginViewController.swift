@@ -30,11 +30,12 @@ extension LoginViewController {
     func layout() {
         view.addSubview(loginView)
         
+        // LoginView
         NSLayoutConstraint.activate([ // Sets isActive tot true for all contraints contained within.
-           
-            loginView.centerYAnchor.constraint(equalTo: view.centerYAnchor), // center vertically
-            loginView.centerXAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 1),
-            view.trailingAnchor.constraint(equalToSystemSpacingAfter: loginView.trailingAnchor, multiplier: 1)
+            loginView.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 2),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: loginView.trailingAnchor, multiplier: 2),
+            view.centerYAnchor.constraint(equalTo: loginView.centerYAnchor), // center vertically
         ])
+               
     }
 }
