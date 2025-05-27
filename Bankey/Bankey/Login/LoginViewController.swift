@@ -7,6 +7,10 @@
 
 import UIKit
 
+protocol LogoutDelegate: AnyObject {
+    func didLogout()
+}
+
 protocol LoginViewControllerDelegate: AnyObject {
     func didLogin()
 }
@@ -24,6 +28,11 @@ class LoginViewController: UIViewController {
         
         style()
         layout()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        signInButton.configuration?.showsActivityIndicator = false
     }
     
     var username: String? {
