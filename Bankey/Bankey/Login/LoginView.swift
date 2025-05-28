@@ -14,6 +14,7 @@ class LoginView: UIView {
     let usernameTextField = UITextField()
     let passwordTextField = UITextField()
     let dividerView = UIView()
+    let label = UILabel()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,6 +45,11 @@ extension  LoginView {
         stackView.axis = .vertical
         stackView.spacing = 8
         
+        //Label
+        //label.translatesAutoresizingMaskIntoConstraints = false
+        //label.text = "Login hasOnboarded \(LocalState.hasOnboarded )"
+        
+        
         // Username Textfield
         usernameTextField.translatesAutoresizingMaskIntoConstraints = false
         usernameTextField.placeholder = "Username"
@@ -66,6 +72,7 @@ extension  LoginView {
     }
     
     func layout() {
+        stackView.addArrangedSubview(label)
         stackView.addArrangedSubview(usernameTextField)
         stackView.addArrangedSubview(dividerView)
         stackView.addArrangedSubview(passwordTextField)
