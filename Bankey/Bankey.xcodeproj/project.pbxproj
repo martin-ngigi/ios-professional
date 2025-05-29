@@ -50,8 +50,8 @@
 		861DBB502DE2E101000A4DA5 = {
 			isa = PBXGroup;
 			children = (
-				861DBB812DE2E707000A4DA5 /* Readme.MD */,
 				861DBB5B2DE2E101000A4DA5 /* Bankey */,
+				861DBB812DE2E707000A4DA5 /* Readme.MD */,
 				861DBB5A2DE2E101000A4DA5 /* Products */,
 			);
 			sourceTree = "<group>";
