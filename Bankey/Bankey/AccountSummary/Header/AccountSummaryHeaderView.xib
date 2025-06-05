@@ -22,7 +22,7 @@
                     <rect key="frame" x="16" y="16" width="338" height="112"/>
                     <subviews>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="Bef-zU-P3N">
-                            <rect key="frame" x="0.0" y="0.0" width="99" height="84.333333333333329"/>
+                            <rect key="frame" x="0.0" y="0.0" width="99" height="85.666666666666671"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bankey" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="huA-me-Aqa">
                                     <rect key="frame" x="0.0" y="0.0" width="69.666666666666671" height="26.333333333333332"/>
@@ -43,8 +43,8 @@
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7TD-Ui-z25">
-                                    <rect key="frame" x="0.0" y="72.333333333333329" width="22.666666666666668" height="12"/>
-                                    <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                                    <rect key="frame" x="0.0" y="72.333333333333329" width="24.666666666666668" height="13.333333333333329"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                     <nil key="textColor"/>
                                     <nil key="highlightedColor"/>
                                 </label>
