@@ -145,6 +145,7 @@ extension AccountSummaryViewController {
             switch result {
             case .success(let profile):
                 self.profile = profile
+                print("DEBUG: Fetched profile: \(profile)")
                 self.configureTableHeaderView(with: profile)
                 self.tableView.reloadData()
             case .failure(let error):
