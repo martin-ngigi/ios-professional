@@ -10,17 +10,23 @@ import Foundation
 import UIKit
 
 class AccountSummaryViewController: UIViewController {
-    
+    //Request Models
     var profile: Profile?
     var accounts: [Account] = []
     
+    //View Models
     var headerViewmodel = AccountSummaryHeaderView.ViewModel(welcomeText: "Welcome", name: "", date: Date())
-    
-    //let games = [ "Pacman", "Space Invaders", "Space Patrol"]
     var accountSummaryCell: [AccountSummaryCell.ViewModel] = []
+
+    //let games = [ "Pacman", "Space Invaders", "Space Patrol"]
+    
+    //Components
     var tableView = UITableView()
     var headerView = AccountSummaryHeaderView(frame: .zero)
     let refreshControl = UIRefreshControl()
+    
+    // Networking
+    var profileManager: ProfileManageable = ProfileManager()
     
     var isLoaded = false
     
@@ -130,7 +136,7 @@ extension AccountSummaryViewController {
         let userId = String(Int.random(in: 1..<4))
         
         group.enter()
-        fetchProfile(forUserId: userId) { result in
+        profileManager.fetchProfile(forUserId: userId) { result in
             switch result {
             case .success(let profile):
                 self.profile = profile
