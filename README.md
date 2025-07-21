@@ -14,5 +14,10 @@ UIKit app
 
 ## Removing Storyboards
 - Global search(CMD + SHIFT + F) "main"
+- Delete Main file in the project structure.
 - Delete in Info.plist, i.e. delete entire "Application Scene Manifest" in the app target.
 - Navigate to Build Settings, search Main, then delete "UIKit Main Storyboard File Base Name"
+- Clear derived data:
+```
+ rm -rf ~/Library/Developer/Xcode/DerivedData
+```
