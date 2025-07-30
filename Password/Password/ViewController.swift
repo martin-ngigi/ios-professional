@@ -7,13 +7,33 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+import UIKit
 
+class ViewController: UIViewController{
+    
+    let newPasswordTextField = PasswordTextField(placeHolderText: "New Password")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        style()
+        layout()
     }
-
-
 }
+
+extension ViewController{
+    func style(){
+        newPasswordTextField.translatesAutoresizingMaskIntoConstraints = false
+    }
+    
+    func layout(){
+        view.addSubview(newPasswordTextField)
+        
+        NSLayoutConstraint.activate([
+            newPasswordTextField.leadingAnchor.constraint(equalToSystemSpacingAfter: view.leadingAnchor, multiplier: 1),
+            view.trailingAnchor.constraint(equalToSystemSpacingAfter: newPasswordTextField.trailingAnchor, multiplier: 1),
+            newPasswordTextField.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+        ])
+    }
+}
+
 
