@@ -10,6 +10,7 @@ import UIKit
 
 protocol PasswordTextFieldDelegate: AnyObject {
     func editingChanged(_ sender: PasswordTextField)
+    func editingDidEnd(_ sender: PasswordTextField) // add
 }
 
 class PasswordTextField: UIView {
@@ -166,7 +167,15 @@ extension PasswordTextField {
 
 
 extension PasswordTextField: UITextFieldDelegate{
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        delegate?.editingDidEnd(self)
+    }
     
+    // Called when 'return' key pressed. Necessary for dismissing keyboard.
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.endEditing(true) // resign first responder
+        return true
+    }
 }
 
 // typealias CustomValidation = (_ textValue: String?) -> (Bool, String)?

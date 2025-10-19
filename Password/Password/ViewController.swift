@@ -10,7 +10,8 @@ import UIKit
 import UIKit
 
 class ViewController: UIViewController{
-    
+    typealias CustomValidation = PasswordTextField.CustomValidation
+
     let stackView = UIStackView()
     let newPasswordTextField = PasswordTextField(placeHolderText: "New Password")
     let statusView = PasswordStatusView()
@@ -19,8 +20,43 @@ class ViewController: UIViewController{
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
         style()
         layout()
+    }
+}
+
+extension ViewController{
+    private func setup() {
+        setupNewPassword()
+        setupDismissKeyboardGesture()
+    }
+    
+    // typealias CustomValidation = (_ textValue: String?) -> (Bool, String)?
+    
+    private func setupNewPassword() {
+        let newPasswordValidation: CustomValidation = { text in
+            
+            // Empty text
+            guard let text = text, !text.isEmpty else {
+                self.statusView.reset()
+                return (false, "Enter your password")
+            }
+            
+            
+            return (true, "")
+        }
+        
+        newPasswordTextField.customValidation = newPasswordValidation
+    }
+    
+    private func setupDismissKeyboardGesture() {
+        let dismissKeyboardTap = UITapGestureRecognizer(target: self, action: #selector(viewTapped(_: )))
+        view.addGestureRecognizer(dismissKeyboardTap)
+    }
+    
+    @objc func viewTapped(_ recognizer: UITapGestureRecognizer) {
+        view.endEditing(true) // resign first responder
     }
 }
 
@@ -69,6 +105,13 @@ extension ViewController: PasswordTextFieldDelegate{
         print("DEBUG: ViewController.editingChanged: \(sender.textField.text ?? "")")
         if sender == newPasswordTextField{
             statusView.updateDisplay(sender.textField.text ?? "")
+        }
+    }
+    
+    func editingDidEnd(_ sender: PasswordTextField) {
+        print("foo - ViewController editingDidEnd: \(sender.textField.text)")
+        if sender === newPasswordTextField {
+            _ = newPasswordTextField.validate()
         }
     }
 }
