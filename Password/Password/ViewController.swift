@@ -30,6 +30,7 @@ extension ViewController{
     private func setup() {
         setupNewPassword()
         setupDismissKeyboardGesture()
+        setupConfirmPassword()
     }
     
     // typealias CustomValidation = (_ textValue: String?) -> (Bool, String)?
@@ -70,6 +71,23 @@ extension ViewController{
     
     @objc func viewTapped(_ recognizer: UITapGestureRecognizer) {
         view.endEditing(true) // resign first responder
+    }
+    
+    private func setupConfirmPassword() {
+        let confirmPasswordValidation: CustomValidation = { text in
+            guard let text = text, !text.isEmpty else {
+                return (false, "Enter your password.")
+            }
+            
+            guard text == self.newPasswordTextField.text else {
+                return (false, "Passwords do not match.")
+            }
+            
+            return (true, "")
+        }
+        
+        confirmPasswordTextField.customValidation = confirmPasswordValidation
+        confirmPasswordTextField.delegate = self
     }
 }
 
@@ -129,5 +147,9 @@ extension ViewController: PasswordTextFieldDelegate{
             
             _ = newPasswordTextField.validate()
         }
+        else if sender == confirmPasswordTextField {
+            _ = confirmPasswordTextField.validate()
+        }
+        
     }
 }
