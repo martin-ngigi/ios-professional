@@ -31,9 +31,15 @@ extension ViewController{
         setupNewPassword()
         setupDismissKeyboardGesture()
         setupConfirmPassword()
+        setupKeyboardHiding()
     }
     
     // typealias CustomValidation = (_ textValue: String?) -> (Bool, String)?
+    
+    private func setupKeyboardHiding() {
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
+    }
     
     private func setupNewPassword() {
         let newPasswordValidation: CustomValidation = { text in
@@ -151,5 +157,35 @@ extension ViewController: PasswordTextFieldDelegate{
             _ = confirmPasswordTextField.validate()
         }
         
+    }
+}
+
+// MARK: Keyboard
+extension ViewController {
+    @objc func keyboardWillShow(sender: NSNotification) {
+        guard let userInfo = sender.userInfo,
+              let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue,
+              let currentTextField = UIResponder.currentFirst() as? UITextField else { return }
+        
+        print("foo - userInfo: \(userInfo)")
+        print("foo - keyboardFrame: \(keyboardFrame)")
+        print("foo - currentTextField: \(currentTextField)")
+        
+        // check if the top of the keyboard is above the bottom of the currently focused textbox
+        let keyboardTopY = keyboardFrame.cgRectValue.origin.y
+        let convertedTextFieldFrame = view.convert(currentTextField.frame, from: currentTextField.superview)
+        let textFieldBottomY = convertedTextFieldFrame.origin.y + convertedTextFieldFrame.size.height
+
+        // if textField bottom is below keyboard bottom - bump the frame up
+        if textFieldBottomY > keyboardTopY {
+            // adjust view up
+        }
+
+        print("foo - currentTextFieldFrame: \(currentTextField.frame)")
+        print("foo - convertedTextFieldFrame: \(convertedTextFieldFrame)")
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        view.frame.origin.y = 0
     }
 }
