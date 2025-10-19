@@ -51,6 +51,12 @@ extension ViewController{
                 return (false, "Enter valid special chars (.,@:?!()$\\/#) with no spaces")
             }
             
+            // Criteria met
+            self.statusView.updateDisplay(text)
+            if !self.statusView.validate(text) {
+                return (false, "Your password must meet the requirements below")
+            }
+            
             return (true, "")
         }
         
@@ -118,6 +124,9 @@ extension ViewController: PasswordTextFieldDelegate{
     func editingDidEnd(_ sender: PasswordTextField) {
         print("foo - ViewController editingDidEnd: \(sender.textField.text)")
         if sender === newPasswordTextField {
+            // as soon as we lose focus, make ❌ appear
+            statusView.shouldResetCriteria = false // add
+            
             _ = newPasswordTextField.validate()
         }
     }
