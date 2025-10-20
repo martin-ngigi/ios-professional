@@ -178,7 +178,9 @@ extension ViewController {
 
         // if textField bottom is below keyboard bottom - bump the frame up
         if textFieldBottomY > keyboardTopY {
-            // adjust view up
+            let textBoxY = convertedTextFieldFrame.origin.y
+            let newFrameY = (textBoxY - keyboardTopY / 2) * -1
+            view.frame.origin.y = newFrameY
         }
 
         print("foo - currentTextFieldFrame: \(currentTextField.frame)")
